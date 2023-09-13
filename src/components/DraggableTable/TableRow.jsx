@@ -23,6 +23,8 @@ export default function TableRow({rowData}) {
         canelation_rate,
         avg_payment_rel_time } = rowData;
 
+        console.log(rowData);
+
     return (
         <tr className="text-center">
             <td className="text-left">{project_manager}</td>
