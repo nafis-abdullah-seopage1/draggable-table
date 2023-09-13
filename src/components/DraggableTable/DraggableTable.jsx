@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import TableRow from './TableRow';
 import useFetchData from '../../hooks/useFetchData';
+import ColumnFilter from './ColumnFilter';
 
 const DraggableTable = ({ columns }) => {
   const [draggedColumn, setDraggedColumn] = useState(null);
@@ -42,40 +42,45 @@ const DraggableTable = ({ columns }) => {
   };
 
   return (
-    <div className="overflow-x-auto">
-      <table className='table table-sm'>
-        <thead>
-          <tr className='bg-gray-800 text-white font-medium'>
-            {tableColumns.map((column, i) => (
-              <th
-                key={i}
-                draggable
-                onDragStart={(e) => { handleDragStart(e, column) }}
-                onDragOver={(e) => { handleDragOver(e, column) }}
-                onDrop={(e) => { handleDrop(e, column) }}
-                className='py-5 px-8'
-              >
-                {column.content}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {tableData.map((row, i) => (
-            // <TableRow key={i} rowData={row} />
-            <tr className="text-center">
-              {
-                Object.entries(row).map((cell)=>{
-                  if (cell[0]!=="_id") {
-                    return <td>{cell[1]}</td>
-                  }
-                })
-              }
+    <>
+      <ColumnFilter columns={columns} setTableColumns={setTableColumns} />
+
+      <div className="overflow-x-auto">
+
+        <table className='table table-sm'>
+          <thead>
+            <tr className='bg-gray-800 text-white font-medium'>
+              {tableColumns.map((column, i) => (
+                <th
+                  key={i}
+                  draggable
+                  onDragStart={(e) => { handleDragStart(e, column) }}
+                  onDragOver={(e) => { handleDragOver(e, column) }}
+                  onDrop={(e) => { handleDrop(e, column) }}
+                  className='py-5 px-8 cursor-grab active:cursor-grabbing border border-gray-700 text-center'
+                >
+                  {column.content}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {tableData.map((row, i) => (
+              // <TableRow key={i} rowData={row} />
+              <tr key={i} className="text-center">
+                {
+                  tableColumns.map((cell, i) => {
+                    // console.log(cell);
+                    // console.log(row[cell.title]);
+                    return <td key={i}>{row[cell.title]}</td>
+                  })
+                }
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 
