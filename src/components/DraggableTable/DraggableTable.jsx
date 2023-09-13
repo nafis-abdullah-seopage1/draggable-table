@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import TableRow from './TableRow';
 
 const DraggableTable = ({ columns, data }) => {
   const [draggedColumn, setDraggedColumn] = useState(null);
   const [tableColumns, setTableColumns] = useState(columns);
   const [tableData, setTableData] = useState(data);
+
+  useEffect(() => {
+    setTableData(data);
+  }, [data]);
 
   const handleDragStart = (e, column) => {
     e.dataTransfer.setData('text/plain', column);
@@ -37,35 +42,32 @@ const DraggableTable = ({ columns, data }) => {
     setDraggedColumn(null);
   };
 
-  console.log(tableData);
   return (
-    <table className='table'>
-      <thead>
-        <tr className='bg-gray-800 text-white font-medium'>
-          {tableColumns.map((column) => (
-            <th
-              key={column}
-              draggable
-              onDragStart={(e) => handleDragStart(e, column)}
-              onDragOver={(e) => handleDragOver(e, column)}
-              onDrop={(e) => handleDrop(e, column)}
-              className='py-5 px-8'
-            >
-              {column}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {tableData.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {tableColumns.map((column) => (
-              <td key={column}>{row[column]}</td>
+    <div className="overflow-x-auto">
+      <table className='table table-sm'>
+        <thead>
+          <tr className='bg-gray-800 text-white font-medium'>
+            {tableColumns.map((column, i) => (
+              <th
+                key={i}
+                draggable
+                onDragStart={(e) => handleDragStart(e, column)}
+                onDragOver={(e) => handleDragOver(e, column)}
+                onDrop={(e) => handleDrop(e, column)}
+                className='py-5 px-8'
+              >
+                {column}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {tableData.map((row, rowIndex) => (
+            <TableRow rowData={row} />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

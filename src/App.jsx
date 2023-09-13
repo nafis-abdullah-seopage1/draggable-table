@@ -1,24 +1,25 @@
 import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Table from './components/Table'
-import DraggableTable from './components/DraggableTable'
-import { columns } from './components/table-utils';
-
-const datas = [
-  { Name: 'John', Age: 30, Email: 'john@example.com' },
-  { Name: 'Jane', Age: 25, Email: 'jane@example.com' },
-  // Add more data as needed
-];
-
+import DraggableTable from './components/DraggableTable/DraggableTable'
+import { columns } from './components/DraggableTable/table-utils'
 
 function App() {
+  const [data, setData] = useState([]);
 
+    useEffect(() => {
+        fetch('/table-data.json').then(res => res.json()).then(data => setData(data));
+    }, [])
+
+    useEffect(()=>{
+      console.log(data);
+    },[data])
 
   return (
     <main>
       <Header project_count={63} project_value={'75,600.00'}/>
-      {/* <Table/> */}
-      <DraggableTable columns={columns} data={datas} />
+      {/* <Table columns={columns} data={data}/> */}
+      <DraggableTable columns={columns} data={data} />
     </main>
   )
 }

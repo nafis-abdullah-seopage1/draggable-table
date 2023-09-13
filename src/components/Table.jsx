@@ -1,38 +1,14 @@
-import { useEffect, useState } from "react";
 
-const Table = () => {
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        fetch('/table-data.json').then(res => res.json()).then(data => setData(data));
-    }, [])
-
+const Table = ({columns,data}) => {
 
     return (<div className="overflow-x-auto">
-        <table className="table">
+        <table className="table column-border-table">
             {/* head */}
             <thead>
-                <tr className="bg-base-200 font-bold text-black text-center">
-                    <th>Project Manager</th>
-                    <th>No. of Projects <br /> <span className="font-normal text-red-600">{'(Minimum Ideal 18)'}</span> </th>
-                    <th>Total Project Value <br /> <span className="font-normal text-red-600">{'(Minimum Ideal 8000 USD)'}</span> </th>
-                    <th>Total Released Amount</th>
-                    <th>No. of <br /> Fully Completed Project</th>
-                    <th>No. of Completed Projects <br />Without Authorization</th>
-                    <th>Project Completion Rate <br /> <span className="font-normal text-red-600">{'(Minimum Ideal 85%)'}</span> </th>
-                    <th>Project Completion Rate <br /> <span>{'(Without Authorization)'}</span> </th>
-                    <th>No. of First Time Clients</th>
-                    <th>Milestone Completion Rate</th>
-                    <th>Task Completion Rate</th>
-                    <th>Average Project Completion Time</th>
-                    <th>No. of Upsale/Cross Sales</th>
-                    <th>Value of Upsale/Cross Sales</th>
-                    <th>Canceled Projects</th>
-                    <th>Delayed Projects</th>
-                    <th>Delayed Completed</th>
-                    <th>Percentage of br Delayed Projects</th>
-                    <th>Cancelation Rate</th>
-                    <th>Avg. Payment Rel. Time</th>
+                <tr className="bg-base-200 font-bold text-black text-center border-l-2">
+                    {columns.map((col,i)=>{
+                        <th key={i}>{col}</th>
+                    })}
                 </tr>
             </thead>
             <tbody>

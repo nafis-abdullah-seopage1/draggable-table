@@ -7,6 +7,6 @@
         @apply border-4 border-black;
     }
     .highlight{
-        @apply font-normal text-red-600;
+        @apply font-bold text-red-400;
     }
 }
