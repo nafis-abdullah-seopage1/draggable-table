@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .bdr{
+        @apply border-4 border-black;
+    }
+    .highlight{
+        @apply font-normal text-red-600;
+    }
+}
