@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import TableRow from './TableRow';
+import useFetchData from '../../hooks/useFetchData';
 
-const DraggableTable = ({ columns, data }) => {
+const DraggableTable = ({ columns }) => {
   const [draggedColumn, setDraggedColumn] = useState(null);
   const [tableColumns, setTableColumns] = useState(columns);
-  const [tableData, setTableData] = useState(data);
-
-  useEffect(() => {
-    setTableData(data);
-  }, [data]);
+  const [tableData, setTableData] = useFetchData();
 
   const handleDragStart = (e, column) => {
-    e.dataTransfer.setData('text/plain', column);
+    e.dataTransfer.setData('text/plain', column.content);
     setDraggedColumn(column);
   };
 
@@ -21,7 +18,7 @@ const DraggableTable = ({ columns, data }) => {
 
   const handleDrop = (e, targetColumn) => {
     e.preventDefault();
-    if (draggedColumn !== targetColumn) {
+    if (draggedColumn !== targetColumn.title) {
       const updatedColumns = [...tableColumns];
       const draggedIndex = tableColumns.indexOf(draggedColumn);
       const targetIndex = tableColumns.indexOf(targetColumn);
@@ -31,7 +28,9 @@ const DraggableTable = ({ columns, data }) => {
       // Reorder the data columns accordingly
       const updatedData = tableData.map((row) => {
         const newRow = {};
-        updatedColumns.forEach((col) => (newRow[col] = row[col]));
+        updatedColumns.forEach((col) => {
+          newRow[col.title] = row[col.title];
+        });
         return newRow;
       });
 
@@ -51,19 +50,28 @@ const DraggableTable = ({ columns, data }) => {
               <th
                 key={i}
                 draggable
-                onDragStart={(e) => handleDragStart(e, column)}
-                onDragOver={(e) => handleDragOver(e, column)}
-                onDrop={(e) => handleDrop(e, column)}
+                onDragStart={(e) => { handleDragStart(e, column) }}
+                onDragOver={(e) => { handleDragOver(e, column) }}
+                onDrop={(e) => { handleDrop(e, column) }}
                 className='py-5 px-8'
               >
-                {column}
+                {column.content}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {tableData.map((row, rowIndex) => (
-            <TableRow rowData={row} />
+          {tableData.map((row, i) => (
+            // <TableRow key={i} rowData={row} />
+            <tr className="text-center">
+              {
+                Object.entries(row).map((cell)=>{
+                  if (cell[0]!=="_id") {
+                    return <td>{cell[1]}</td>
+                  }
+                })
+              }
+            </tr>
           ))}
         </tbody>
       </table>
