@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import useFetchData from '../../hooks/useFetchData';
 import ColumnFilter from './ColumnFilter';
 import MonthFilter from './MonthFilter';
+import Header from '../Header';
+import ModalTable from './ModalTable';
 
-const DraggableTable = ({ columns, tableData}) => {
+const DraggableTable = ({ columns, tableData, anchored_Cell }) => {
   const [draggedColumn, setDraggedColumn] = useState(null);
   const [tableColumns, setTableColumns] = useState([...columns]);
+  const [modalData, setModalData] = useState({});
+  const [selectedCell, setSelectedCell] = useState('');
 
   const handleDragStart = (e, column) => {
     e.dataTransfer.setData('text/plain', column.content);
@@ -60,7 +63,7 @@ const DraggableTable = ({ columns, tableData}) => {
                   onDragStart={(e) => { handleDragStart(e, column) }}
                   onDragOver={(e) => { handleDragOver(e, column) }}
                   onDrop={(e) => { handleDrop(e, column) }}
-                  className='py-5 px-8 cursor-grab active:cursor-grabbing border border-gray-700 text-center'
+                  className='py-3 px-5 cursor-grab active:cursor-grabbing border border-gray-700 text-center'
                 >
                   {column.content}
                 </th>
@@ -72,10 +75,26 @@ const DraggableTable = ({ columns, tableData}) => {
               // <TableRow key={i} rowData={row} />
               <tr key={i} className="text-center">
                 {
-                  [...tableColumns].map((cell, i) => {
+                  [...tableColumns].map((cell, j) => {
                     // console.log({col:cell.title,cell:row[cell.title]});
                     // console.log(row[cell.title]);
-                    return <td key={i}>{row[cell.title]}</td>
+                    return (
+                      <td key={j}>
+                        {
+                          anchored_Cell[cell.title] ?
+                            <>
+                              <span className="font-medium text-blue-600 underline underline-offset-2 decoration-2 cursor-pointer" onClick={() => {
+                                setModalData({rowData:row,anchored_Cell});
+                                setSelectedCell(cell.title)
+                                document.getElementById(`my_modal_1`).showModal();
+                              }}>{row[cell.title]}</span>
+                              <ModalTable modal_data={modalData} selectedCell={selectedCell} setSelectedCell={setSelectedCell}/>
+                            </>
+                            :
+                            <span className='font-medium text-gray-500'>{row[cell.title]}</span>
+                        }
+
+                      </td>)
                   })
                 }
               </tr>

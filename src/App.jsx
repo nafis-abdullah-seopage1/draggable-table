@@ -1,6 +1,6 @@
 import Header from './components/Header'
 import DraggableTable from './components/DraggableTable/DraggableTable'
-import { columns } from './components/DraggableTable/table-utils'
+import { anchored_Cell, columns } from './utils/table-utils'
 import useFetchData from './hooks/useFetchData';
 
 function App() {
@@ -8,8 +8,8 @@ function App() {
 
   return (
     <main>
-      <Header project_count={63} project_value={'75,600.00'}/>
-      <DraggableTable columns={columns} tableData={tableData} />
+      <Header project_count={63} project_value={'$75,600.00'}/>
+      <DraggableTable columns={columns} tableData={tableData} anchored_Cell={anchored_Cell} />
     </main>
   )
 }

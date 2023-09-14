@@ -80,3 +80,19 @@ export const columns = [
         content: <>Avg. Payment Rel. Time</>
     }
 ]
+
+
+export const anchored_Cell = {
+    no_of_project : "no_of_project",
+    total_project_value : "total_project_value",
+    total_released_amount : "total_released_amount",
+    no_of_completed_project : "no_of_completed_project",
+    project_completion_rate : "project_completion_rate",
+    milestone_completion_rate : "milestone_completion_rate",
+    average_project_completion_time : "average_project_completion_time",
+    no_of_sale : "no_of_sale",
+    value_of_sale : "value_of_sale",
+    canceled_projects : "canceled_projects",
+    delayed_projects : "delayed_projects",
+    delayed_completed : "delayed_completed"
+}

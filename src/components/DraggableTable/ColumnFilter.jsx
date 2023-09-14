@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 export default function ColumnFilter({ columns, setTableColumns }) {
 
     return (
@@ -16,6 +18,8 @@ export default function ColumnFilter({ columns, setTableColumns }) {
 
 
 const ColIndex = ({ col, i, setTableColumns }) => {
+    const id = useId();
+    // console.log(id);
 
     function handleCheckFilter(checked) {
         // console.log(checked);
@@ -36,8 +40,8 @@ const ColIndex = ({ col, i, setTableColumns }) => {
 
     return (
         <li key={i} className="form-control">
-            <label htmlFor={`filter-${i}`} className="cursor-pointer label justify-start gap-2">
-                <input id={`filter-${i}`} name="checkbox" type="checkbox" defaultChecked className="checkbox" onChange={(e) => handleCheckFilter(e.target.checked)} />
+            <label htmlFor={`filter-${id}`} className="cursor-pointer label justify-start gap-2">
+                <input id={`filter-${id}`} name="checkbox" type="checkbox" defaultChecked className="checkbox" onChange={(e) => handleCheckFilter(e.target.checked)} />
                 <span className="text-xs">{col.content}</span>
             </label>
         </li>
