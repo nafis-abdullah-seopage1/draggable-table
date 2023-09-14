@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useFetchData from '../../hooks/useFetchData';
 import ColumnFilter from './ColumnFilter';
+import MonthFilter from './MonthFilter';
 
 const DraggableTable = ({ columns }) => {
   const [draggedColumn, setDraggedColumn] = useState(null);
@@ -48,7 +49,10 @@ const DraggableTable = ({ columns }) => {
 
   return (
     <>
-      <ColumnFilter columns={columns} setTableColumns={setTableColumns} />
+      <section className='p-3 flex justify-between'>
+        <MonthFilter />
+        <ColumnFilter columns={columns} setTableColumns={setTableColumns} />
+      </section>
 
       <div className="overflow-x-auto">
 
