@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-export default function useFetchData(){
+export default function useFetchData(url){
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('/table-data.json').then(res => res.json()).then(data => setData(data));
+        fetch(url).then(res => res.json()).then(data => setData(data));
     }, [])
 
     return [data,setData];

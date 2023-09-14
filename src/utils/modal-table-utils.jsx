@@ -1,6 +1,6 @@
 export const modal_table_columns = [
     { 
-        title: 'sl_no.', 
+        title: 'sl_no', 
         content: <>SL.<br />No.</>
     },
     { 
@@ -28,11 +28,11 @@ export const modal_table_columns = [
         content: <>Total<br />Hours<br />Logged</>
     },
     {
-        title: 'freelancer.com_message_page_link',
+        title: 'freelancer_com_message_page_link',
         content: <>Freelancer.com<br />Message Page<br />Link</>
     },
     {
-        title: 'freelancer.com_profile_link',
+        title: 'freelancer_com_profile_link',
         content: <>Freelancer.com<br />Profile Link</>
     },
     {

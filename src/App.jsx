@@ -4,7 +4,7 @@ import { anchored_Cell, columns } from './utils/table-utils'
 import useFetchData from './hooks/useFetchData';
 
 function App() {
-  const [tableData, setTableData] = useFetchData();
+  const [tableData, setTableData] = useFetchData('/table-data.json');
 
   return (
     <main>
