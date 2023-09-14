@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useFetchData from '../../hooks/useFetchData';
 import ColumnFilter from './ColumnFilter';
 
 const DraggableTable = ({ columns }) => {
   const [draggedColumn, setDraggedColumn] = useState(null);
-  const [tableColumns, setTableColumns] = useState(columns);
+  const [tableColumns, setTableColumns] = useState([...columns]);
   const [tableData, setTableData] = useFetchData();
+
+  useEffect(()=>{
+    setTableData(prev => prev);
+  },[tableColumns])
 
   const handleDragStart = (e, column) => {
     e.dataTransfer.setData('text/plain', column.content);
@@ -36,10 +40,15 @@ const DraggableTable = ({ columns }) => {
 
       // Update the state with the new column order and data
       setTableColumns(updatedColumns);
-      setTableData(updatedData);
+      // setTableData(updatedData);
     }
     setDraggedColumn(null);
   };
+
+
+  const getData = useCallback((data)=>{
+    return [...data];
+  },[tableColumns])
 
   return (
     <>
@@ -65,12 +74,12 @@ const DraggableTable = ({ columns }) => {
             </tr>
           </thead>
           <tbody>
-            {tableData.map((row, i) => (
+            {[...tableData].map((row, i) => (
               // <TableRow key={i} rowData={row} />
               <tr key={i} className="text-center">
                 {
-                  tableColumns.map((cell, i) => {
-                    // console.log(cell);
+                  [...tableColumns].map((cell, i) => {
+                    // console.log({col:cell.title,cell:row[cell.title]});
                     // console.log(row[cell.title]);
                     return <td key={i}>{row[cell.title]}</td>
                   })
