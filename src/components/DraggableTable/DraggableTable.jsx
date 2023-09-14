@@ -7,10 +7,6 @@ const DraggableTable = ({ columns }) => {
   const [tableColumns, setTableColumns] = useState([...columns]);
   const [tableData, setTableData] = useFetchData();
 
-  useEffect(()=>{
-    setTableData(prev => prev);
-  },[tableColumns])
-
   const handleDragStart = (e, column) => {
     e.dataTransfer.setData('text/plain', column.content);
     setDraggedColumn(column);
