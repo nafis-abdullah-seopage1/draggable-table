@@ -38,7 +38,7 @@ export default function MonthFilter() {
                 <div className='font-medium text-slate-950/40 inline-flex gap-x-1'>
                     <span className='text-slate-950/60'>{`${months[selectedMonth-1]} 16, ${year}`}</span>
                     <span>to</span>
-                    <span className='text-slate-950/60'>{`${months[selectedMonth]} 15, ${year}`}</span>
+                    <span className='text-slate-950/60'>{`${selectedMonth===12?months[0]:months[selectedMonth]} 15, ${selectedMonth===12?year+1:year}`}</span>
                 </div>:''
             }
         </div>
