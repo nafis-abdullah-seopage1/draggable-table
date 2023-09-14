@@ -1,6 +1,3 @@
-import { useEffect, useRef, useState } from "react"
-import { columns } from "./table-utils";
-
 export default function ColumnFilter({ columns, setTableColumns }) {
 
     return (

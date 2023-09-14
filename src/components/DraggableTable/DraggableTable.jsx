@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useFetchData from '../../hooks/useFetchData';
 import ColumnFilter from './ColumnFilter';
 import MonthFilter from './MonthFilter';
 
-const DraggableTable = ({ columns }) => {
+const DraggableTable = ({ columns, tableData}) => {
   const [draggedColumn, setDraggedColumn] = useState(null);
   const [tableColumns, setTableColumns] = useState([...columns]);
-  const [tableData, setTableData] = useFetchData();
 
   const handleDragStart = (e, column) => {
     e.dataTransfer.setData('text/plain', column.content);
@@ -41,11 +40,6 @@ const DraggableTable = ({ columns }) => {
     }
     setDraggedColumn(null);
   };
-
-
-  const getData = useCallback((data)=>{
-    return [...data];
-  },[tableColumns])
 
   return (
     <>
