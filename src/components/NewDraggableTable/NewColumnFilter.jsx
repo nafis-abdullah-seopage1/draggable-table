@@ -1,17 +1,21 @@
 import { useId } from "react";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 export default function NewColumnFilter({ columns, setTableColumns }) {
 
     return (
-        <details className="dropdown dropdown-end">
-            <summary className="m-1 btn btn-neutral btn-sm btn-outline rounded">Select Column</summary>
-            <ul className="p-2 shadow menu dropdown-content z-[1] flex-nowrap rounded bg-white border-2 w-52 space-y-1 max-h-[50vh] overflow-y-auto">
-                {
-                    [...columns].map((col, i) => <ColIndex key={i} col={col} i={i} setTableColumns={setTableColumns} />)
-                }
-
-            </ul>
-        </details>
+        <Dropdown>
+            <Dropdown.Toggle variant="dark" id="dropdown-basic">
+                Select Month
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+                <div style={{ maxHeight: '50vh', overflowY: 'auto', maxWidth: '20rem', width: '100%' }}>
+                    {
+                        [...columns].map((col, i) => <ColIndex key={i} col={col} i={i} setTableColumns={setTableColumns} />)
+                    }
+                </div>
+            </Dropdown.Menu>
+        </Dropdown>
     )
 }
 
@@ -39,11 +43,14 @@ const ColIndex = ({ col, i, setTableColumns }) => {
     }
 
     return (
-        <li key={i} className="form-control">
-            <label htmlFor={`filter-${id}`} className="cursor-pointer label justify-start gap-2">
-                <input id={`filter-${id}`} name="checkbox" type="checkbox" defaultChecked className="checkbox" onChange={(e) => handleCheckFilter(e.target.checked)} />
-                <span className="text-xs">{col.content}</span>
-            </label>
-        </li>
+        <div>
+            {i > 0 && <Dropdown.Divider />}
+            <Dropdown.Item>
+                <label htmlFor={`filter-${id}`} className="d-inline-flex justify-content-start align-items-center" style={{ cursor: 'pointer', gap: '1rem' }}>
+                    <input id={`filter-${id}`} name="checkbox" type="checkbox" defaultChecked className="checkbox" onChange={(e) => handleCheckFilter(e.target.checked)} />
+                    <span className="text-xs">{col.content}</span>
+                </label>
+            </Dropdown.Item>
+        </div>
     )
 }

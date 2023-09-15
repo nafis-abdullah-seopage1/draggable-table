@@ -46,7 +46,7 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
 
   return (
     <>
-      <section className='p-3 flex justify-between'>
+      <section className='p-3 d-flex justify-content-between'>
         <NewMonthFilter />
         <NewColumnFilter columns={columns} setTableColumns={setTableColumns} />
       </section>
