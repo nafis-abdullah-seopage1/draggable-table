@@ -1,0 +1,19 @@
+.dropdown_box{
+    max-width: 20rem;
+    padding: 1rem;
+}
+
+.arrow_btn{
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 2px;
+    background-color: rgba(128, 128, 128, 0.249);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.months_container{
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(4,4rem);
+}
