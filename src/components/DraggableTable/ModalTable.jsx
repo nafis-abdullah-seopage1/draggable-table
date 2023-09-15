@@ -3,13 +3,15 @@ import { modal_table_columns } from "../../utils/modal-table-utils";
 import Header from "../Header";
 import DraggableTable from "./DraggableTable";
 
-export default function ModalTable({ modal_data: { rowData, anchored_Cell },selectedCell,setSelectedCell }) {
-    const [tableData] = useFetchData('/modal-table-data.json')
+export default function ModalTable({ modal_data: { rowData, anchored_Cell },selectedCell,setSelectedCell, tableData }) {
+    // const [tableData] = useFetchData('/modal-table-data.json');
 
     return (
         <dialog id={`my_modal_1`} className="modal bg-slate-950/20 p-5">
             <div className="modal-box rounded h-full w-full max-w-none max-h-none relative">
-                <button onClick={() => document.getElementById('my_modal_1').close()} className="btn btn-sm border-none btn-circle btn-outline flex items-center justify-center absolute top-5 right-5">
+                <button onClick={() => {
+                    document.getElementById('my_modal_1').close();
+                }} className="btn btn-sm border-none btn-circle btn-outline flex items-center justify-center absolute top-5 right-5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
 
@@ -21,7 +23,7 @@ export default function ModalTable({ modal_data: { rowData, anchored_Cell },sele
                     }
                 </div>
 
-                <DraggableTable anchored_Cell={{}} columns={modal_table_columns} tableData={tableData} />
+                <DraggableTable anchored_Cell={{}} columns={modal_table_columns} tableData={tableData || []} />
             </div>
         </dialog>
     )

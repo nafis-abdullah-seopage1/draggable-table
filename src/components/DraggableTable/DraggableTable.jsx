@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ColumnFilter from './ColumnFilter';
 import MonthFilter from './MonthFilter';
 import Header from '../Header';
@@ -8,6 +8,7 @@ const DraggableTable = ({ columns, tableData, anchored_Cell }) => {
   const [draggedColumn, setDraggedColumn] = useState(null);
   const [tableColumns, setTableColumns] = useState([...columns]);
   const [modalData, setModalData] = useState({});
+  const [modal_table_data, set_modal_table_data] = useState(null);
   const [selectedCell, setSelectedCell] = useState('');
 
   const handleDragStart = (e, column) => {
@@ -85,10 +86,11 @@ const DraggableTable = ({ columns, tableData, anchored_Cell }) => {
                             <>
                               <span className="font-medium text-blue-600 underline underline-offset-2 decoration-2 cursor-pointer" onClick={() => {
                                 setModalData({rowData:row,anchored_Cell});
-                                setSelectedCell(cell.title)
+                                setSelectedCell(cell.title);
+                                fetch('/modal-table-data.json').then(res => res.json()).then(data => set_modal_table_data(data));
                                 document.getElementById(`my_modal_1`).showModal();
                               }}>{row[cell.title]}</span>
-                              <ModalTable modal_data={modalData} selectedCell={selectedCell} setSelectedCell={setSelectedCell}/>
+                              <ModalTable modal_data={modalData} selectedCell={selectedCell} setSelectedCell={setSelectedCell} tableData={modal_table_data}/>
                             </>
                             :
                             <span className='font-medium text-gray-500'>{row[cell.title]}</span>
