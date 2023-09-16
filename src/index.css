@@ -10,3 +10,9 @@
         @apply font-bold text-red-400;
     }
 } */
+
+
+.highlight{
+    font-weight: bold;
+    color: rgb(255, 112, 112);
+}
