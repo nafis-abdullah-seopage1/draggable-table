@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import NewMonthFilter from './NewMonthFilter';
 import NewColumnFilter from './NewColumnFilter';
 import NewModalTable from './NewModalTable';
-import { Table } from 'react-bootstrap';
 import style from './styles/newDraggableTable.module.css'
 
 const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
