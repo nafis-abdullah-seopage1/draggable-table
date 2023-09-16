@@ -1,11 +1,11 @@
 export const modal_table_columns = [
     { 
         title: 'sl_no', 
-        content: <>SL.<br />No.</>
+        content: <>SL. No.</>
     },
     { 
         title: 'project_name', 
-        content: <>Project<br />Name</>
+        content: <>Project Name</>
     },
     { 
         title: 'client', 
@@ -13,19 +13,19 @@ export const modal_table_columns = [
     },
     {
         title:'project_value',
-        content: <>Project<br />Value</>
+        content: <>Project Value</>
     },
     {
         title:'deal_closed_by',
-        content: <>Deal Closed<br />By</>
+        content: <>Deal Closed By</>
     },
     {
         title: 'estimated_hours',
-        content: <>Estimated<br />Hours</>
+        content: <>Estimated Hours</>
     },
     {
         title: 'total_hours_logged',
-        content: <>Total<br />Hours<br />Logged</>
+        content: <>Total Hours Logged</>
     },
     {
         title: 'freelancer_com_message_page_link',
@@ -33,7 +33,7 @@ export const modal_table_columns = [
     },
     {
         title: 'freelancer_com_profile_link',
-        content: <>Freelancer.com<br />Profile Link</>
+        content: <>Freelancer.com Profile Link</>
     },
     {
         title: 'members',
@@ -49,7 +49,7 @@ export const modal_table_columns = [
     },
     {
         title: 'deliverables_signed_by_the_client',
-        content: <>Deliverables<br />Signed By<br />the Client</>
+        content: <>Deliverables Signed By the Client</>
     },
     {
         title: 'deliverables_signed_internally',
@@ -57,11 +57,11 @@ export const modal_table_columns = [
     },
     {
         title: 'project_progress_payment_wise',
-        content: <>Project<br />Progress<br />{`(Payment Wise)`}</>
+        content: <>Project Progress<br />{`(Payment Wise)`}</>
     },
     {
         title: 'project_progress_task_completion_wise',
-        content: <>Project<br />Progress<br />{`(Task Completion Wise)`}</>
+        content: <>Project Progress<br />{`(Task Completion Wise)`}</>
     },
     {
         title: 'status',
@@ -69,6 +69,6 @@ export const modal_table_columns = [
     },
     {
         title: 'project_completion_time',
-        content: <>Project<br />Completion<br />Time</>
+        content: <>Project Completion Time</>
     }
 ]

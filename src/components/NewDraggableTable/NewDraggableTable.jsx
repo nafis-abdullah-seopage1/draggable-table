@@ -9,8 +9,12 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
   const [draggedColumn, setDraggedColumn] = useState(null);
   const [tableColumns, setTableColumns] = useState([...columns]);
   const [modalData, setModalData] = useState({});
-  const [modal_table_data, set_modal_table_data] = useState(null);
   const [selectedCell, setSelectedCell] = useState('');
+  const [show, setShow] = useState(false);
+  
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   const handleDragStart = (e, column) => {
     e.dataTransfer.setData('text/plain', column.content);
@@ -53,10 +57,10 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
         <NewColumnFilter columns={columns} setTableColumns={setTableColumns} />
       </section>
 
-      <div class="">
+      <div className="" style={{overflowX:'auto',width:'97%',margin:'0 auto'}}>
 
         <table className='table table-hover'>
-          <thead class="thead-dark">
+          <thead className="thead-dark">
             <tr>
               {tableColumns.map((column, i) => (
                 <th
@@ -81,19 +85,20 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
                       <td key={j} className={style.tableRow_cell}>
                         {
                           anchored_Cell[cell.title] ?
-                            <>
-                              <span className="btn btn-link" style={{cursor:'pointer'}} onClick={() => {
+                              <button
+                                type='button' 
+                                className="btn btn-link"
+                                style={{cursor:'pointer'}} 
+                                data-toggle="modal"
+                                data-target="#staticBackdrop"
+                                onClick={() => {
                                 setModalData({rowData:row,anchored_Cell});
                                 setSelectedCell(cell.title);
-                                fetch('/modal-table-data.json').then(res => res.json()).then(data => set_modal_table_data(data));
-                                document.getElementById(`my_modal_1`).showModal();
-                              }}>{row[cell.title]}</span>
-                              <NewModalTable modal_data={modalData} selectedCell={selectedCell} setSelectedCell={setSelectedCell} tableData={modal_table_data}/>
-                            </>
+                                handleShow();
+                              }}>{row[cell.title]}</button>
                             :
                             <span className='font-weight-bold text-secondary'>{row[cell.title]}</span>
                         }
-
                       </td>)
                   })
                 }
@@ -101,6 +106,7 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
             ))}
           </tbody>
         </table>
+        {show?<NewModalTable modal_data={modalData} selectedCell={selectedCell} setSelectedCell={setSelectedCell} handleClose={handleClose} />:<></> }
       </div>
     </>
   );
