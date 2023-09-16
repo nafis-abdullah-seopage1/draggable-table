@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Button, Dropdown, DropdownButton } from "react-bootstrap";
 
 export default function NewColumnFilter({ columns, setTableColumns }) {
 
@@ -9,7 +9,7 @@ export default function NewColumnFilter({ columns, setTableColumns }) {
                 Select Month
             </Dropdown.Toggle>
             <Dropdown.Menu>
-                <div style={{ maxHeight: '50vh', overflowY: 'auto', maxWidth: '20rem', width: '100%' }}>
+                <div style={{ maxHeight: '50vh', overflowY: 'auto', overflowX:"hidden"}}>
                     {
                         [...columns].map((col, i) => <ColIndex key={i} col={col} i={i} setTableColumns={setTableColumns} />)
                     }
@@ -43,14 +43,12 @@ const ColIndex = ({ col, i, setTableColumns }) => {
     }
 
     return (
-        <div>
+        <div style={{}}>
             {i > 0 && <Dropdown.Divider />}
-            <Dropdown.Item>
-                <label htmlFor={`filter-${id}`} className="d-inline-flex justify-content-start align-items-center" style={{ cursor: 'pointer', gap: '1rem' }}>
+                <label htmlFor={`filter-${id}`} className="d-flex justify-content-start align-items-center" style={{ cursor: 'pointer', gap: '1rem', userSelect: 'none', width:'20rem',padding:'0 2rem' }}>
                     <input id={`filter-${id}`} name="checkbox" type="checkbox" defaultChecked className="checkbox" onChange={(e) => handleCheckFilter(e.target.checked)} />
                     <span className="text-xs">{col.content}</span>
                 </label>
-            </Dropdown.Item>
         </div>
     )
 }
