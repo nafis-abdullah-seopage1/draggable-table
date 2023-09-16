@@ -56,7 +56,7 @@ export default function NewMonthFilter() {
 function MonthBlock({ month, index, setSelectedMonth, selectedMonth }) {
 
     return (
-        <Button variant={`${selectedMonth === index?'primary':'light'}`} onClick={() => setSelectedMonth(prev => prev === index ? 0 : index)}>
+        <Button variant={`${selectedMonth === index?'danger':'light'}`} onClick={() => setSelectedMonth(prev => prev === index ? 0 : index)}>
             {month.slice(0, 3)}
         </Button>
     )

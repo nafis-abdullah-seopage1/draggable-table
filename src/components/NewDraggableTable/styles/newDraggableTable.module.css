@@ -1,10 +1,29 @@
 /* table styles */
-.
+.custom_table{
+    margin: 10px auto;
+    /* border: solid; */
+}
 
+.custom_table > thead{
+    background-color: rgb(30, 30, 30);
+}
 
+.custom_table th{
+    font-weight: bold;
+    color: white;
+    min-width: 18rem !important;
+    padding: 10px 0;
+}
 
-.draggable_column_head{
-    
+.custom_table tbody{
+    border: dashed 1px gray;
+}
+
+.custom_table td{
+    text-align: center;
+    padding: 1rem !important;
+    border-top: dashed 1px gray;
+    border-bottom: dashed 1px gray;
 }
 
 .draggable_column_cell{

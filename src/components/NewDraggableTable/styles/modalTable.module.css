@@ -15,16 +15,25 @@
     width: 90vw;
     border-radius: 0.5rem;
     overflow-y: auto;
+    padding: 0 0 5rem;
 }
 
 .specified_columns_container{
-    padding: 5px 20px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    gap: 5px;
+    padding: 5px 0;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 8px;
+    margin: 25px 35px;
 }
 
 .specified_columns_container > button {
-    flex: auto 1 1;
+    min-height: 5rem;
+    text-transform: uppercase;
+    /* font-size: 13px; */
+    font-weight: bold;
+}
+
+.black{
+    color: black;
+    font-weight: bold;
 }

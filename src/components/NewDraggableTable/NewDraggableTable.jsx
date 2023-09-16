@@ -51,15 +51,15 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
 
   return (
     <>
-      <section className='p-3 d-flex justify-content-between'>
+      <section className='d-flex justify-content-between' style={{margin:'25px 35px'}}>
         <NewMonthFilter />
         <NewColumnFilter columns={columns} setTableColumns={setTableColumns} />
       </section>
 
       <div className="" style={{overflowX:'auto',width:'97%',margin:'0 auto'}}>
 
-        <table className='table table-hover'>
-          <thead className="thead-dark">
+        <table className={style.custom_table}>
+          <thead className="">
             <tr>
               {tableColumns.map((column, i) => (
                 <th
@@ -86,8 +86,8 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
                           anchored_Cell[cell.title] ?
                               <button
                                 type='button' 
-                                className="btn btn-link"
-                                style={{cursor:'pointer'}} 
+                                className="btn text-danger font-weight-bold"
+                                style={{cursor:'pointer',textDecoration:'underline solid 2px',textUnderlineOffset:'2px'}} 
                                 data-toggle="modal"
                                 data-target="#staticBackdrop"
                                 onClick={() => {
