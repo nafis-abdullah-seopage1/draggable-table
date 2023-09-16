@@ -17,19 +17,19 @@ export const columns = [
     },
     {
         title: 'no_of_completed_project',
-        content: <>No. of <br /> Fully Completed Project</>
+        content: <>No. of Fully Completed Project</>
     },
     {
         title: 'no_of_completed_project_without_authorization',
-        content: <>No. of Completed Projects <br />Without Authorization</>
+        content: <>No. of Completed Projects Without Authorization</>
     },
     {
         title: 'project_completion_rate',
-        content: <>Project Completion Rate <br /> <span className="highlight">{'(Minimum Ideal 85%)'}</span> </>
+        content: <>Project Completion Rate <br /><span className="highlight">{'(Minimum Ideal 85%)'}</span> </>
     },
     {
         title: 'project_completion_rate_without_authorization',
-        content: <>Project Completion Rate <br /> <span>{'(Without Authorization)'}</span> </>
+        content: <>Project Completion Rate <br /><span>{'(Without Authorization)'}</span> </>
     },
     {
         title: 'no_of_first_time_clients',

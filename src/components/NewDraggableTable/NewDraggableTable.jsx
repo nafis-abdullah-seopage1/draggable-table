@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import NewMonthFilter from './NewMonthFilter';
 import NewColumnFilter from './NewColumnFilter';
 import NewModalTable from './NewModalTable';
+import { Table } from 'react-bootstrap';
+import style from './styles/newDraggableTable.module.css'
 
 const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
   const [draggedColumn, setDraggedColumn] = useState(null);
@@ -51,11 +53,11 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
         <NewColumnFilter columns={columns} setTableColumns={setTableColumns} />
       </section>
 
-      <div className="overflow-x-auto">
+      <div class="">
 
-        <table className='table table-sm'>
-          <thead>
-            <tr className='bg-gray-800 text-white font-medium'>
+        <table className='table table-hover'>
+          <thead class="thead-dark">
+            <tr>
               {tableColumns.map((column, i) => (
                 <th
                   key={i}
@@ -63,7 +65,7 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
                   onDragStart={(e) => { handleDragStart(e, column) }}
                   onDragOver={(e) => { handleDragOver(e, column) }}
                   onDrop={(e) => { handleDrop(e, column) }}
-                  className='py-3 px-5 cursor-grab active:cursor-grabbing border border-gray-700 text-center'
+                  className={style.draggable_column_cell}
                 >
                   {column.content}
                 </th>
@@ -72,18 +74,15 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
           </thead>
           <tbody>
             {[...tableData].map((row, i) => (
-              // <TableRow key={i} rowData={row} />
-              <tr key={i} className="text-center">
+              <tr key={i}>
                 {
                   [...tableColumns].map((cell, j) => {
-                    // console.log({col:cell.title,cell:row[cell.title]});
-                    // console.log(row[cell.title]);
                     return (
-                      <td key={j}>
+                      <td key={j} className={style.tableRow_cell}>
                         {
                           anchored_Cell[cell.title] ?
                             <>
-                              <span className="font-medium text-blue-600 underline underline-offset-2 decoration-2 cursor-pointer" onClick={() => {
+                              <span className="btn btn-link" style={{cursor:'pointer'}} onClick={() => {
                                 setModalData({rowData:row,anchored_Cell});
                                 setSelectedCell(cell.title);
                                 fetch('/modal-table-data.json').then(res => res.json()).then(data => set_modal_table_data(data));
@@ -92,7 +91,7 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
                               <NewModalTable modal_data={modalData} selectedCell={selectedCell} setSelectedCell={setSelectedCell} tableData={modal_table_data}/>
                             </>
                             :
-                            <span className='font-medium text-gray-500'>{row[cell.title]}</span>
+                            <span className='font-weight-bold text-secondary'>{row[cell.title]}</span>
                         }
 
                       </td>)
