@@ -5,7 +5,7 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 
 const Pagination = ({ page, setPage, totalPage }) => {
     useEffect(() => {
-        // window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     }, [page]);
 
     const pages = [];
