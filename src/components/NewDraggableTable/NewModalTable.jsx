@@ -37,11 +37,25 @@ export default function NewModalTable({
                         paddingRight: "10px",
                         display: "flex",
                         justifyContent: "end",
+                        zIndex:'999'
                     }}
                 >
-                    <Button variant="secondary" onClick={handleClose}>
+                    <button
+                        onClick={handleClose}
+                        style={{
+                            height:'2rem',
+                            width: '2rem',
+                            display: 'flex',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            borderRadius: '50%',
+                            border:'solid 2px red',
+                            fontWeight:'bold',
+                            backgroundColor:'white',
+                            transform:'scale(1.2)'
+                        }}>
                         X
-                    </Button>
+                    </button>
                 </div>
                 <section>
                     <Header
