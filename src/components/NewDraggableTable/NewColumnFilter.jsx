@@ -6,7 +6,7 @@ export default function NewColumnFilter({ columns, setTableColumns }) {
     return (
         <Dropdown>
             <Dropdown.Toggle variant="dark" id="dropdown-basic">
-                Select Month
+                Select Column
             </Dropdown.Toggle>
             <Dropdown.Menu>
                 <div style={{ maxHeight: '50vh', overflowY: 'auto', overflowX:"hidden"}}>
