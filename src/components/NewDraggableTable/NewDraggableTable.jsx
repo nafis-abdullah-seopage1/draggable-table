@@ -95,7 +95,8 @@ const NewDraggableTable = ({ columns, tableData, anchored_Cell }) => {
                                 setSelectedCell(cell.title);
                                 handleShow();
                               }}>{row[cell.title]}</button>
-                            :
+                            :(cell.title === 'freelancer_com_message_page_link' || cell.title === 'freelancer_com_profile_link')?
+                            <a href={row[cell.title]} style={{textDecoration:'underline 2px blue'}} target='_blank'>Link</a>:
                             <span className='font-weight-bold text-secondary'>{row[cell.title]}</span>
                         }
                       </td>)

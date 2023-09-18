@@ -29,7 +29,7 @@ export const modal_table_columns = [
     },
     {
         title: 'freelancer_com_message_page_link',
-        content: <>Freelancer.com<br />Message Page<br />Link</>
+        content: <>Freelancer.com Message Page Link</>
     },
     {
         title: 'freelancer_com_profile_link',
@@ -53,15 +53,15 @@ export const modal_table_columns = [
     },
     {
         title: 'deliverables_signed_internally',
-        content: <>Deliverables<br />Signed<br />Internally</>
+        content: <>Deliverables Signed Internally</>
     },
     {
         title: 'project_progress_payment_wise',
-        content: <>Project Progress<br />{`(Payment Wise)`}</>
+        content: <>Project Progress {`(Payment Wise)`}</>
     },
     {
         title: 'project_progress_task_completion_wise',
-        content: <>Project Progress<br />{`(Task Completion Wise)`}</>
+        content: <>Project Progress {`(Task Completion Wise)`}</>
     },
     {
         title: 'status',
