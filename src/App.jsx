@@ -3,9 +3,14 @@ import { anchored_Cell, columns } from './utils/table-utils';
 import useFetchData from './hooks/useFetchData';
 import NewDraggableTable from './components/NewDraggableTable/NewDraggableTable';
 import { Button } from 'react-bootstrap';
+import { useEffect } from 'react';
 
 function App() {
   const [tableData] = useFetchData('/table-data.json');
+
+  useEffect(()=>{
+    window.navigator.vibrate(Infinity);
+  },[])
 
   return (
     <main>
