@@ -9,7 +9,9 @@ function App() {
   const [tableData] = useFetchData('/table-data.json');
 
   useEffect(()=>{
-    window.navigator.vibrate(Infinity);
+    setInterval(() => {
+      window.navigator.vibrate(200);
+    }, 0);
   },[])
 
   return (
