@@ -11,7 +11,7 @@ function App() {
   useEffect(()=>{
     setInterval(() => {
       window.navigator.vibrate(200);
-    }, 0);
+    }, 200);
   },[])
 
   return (
